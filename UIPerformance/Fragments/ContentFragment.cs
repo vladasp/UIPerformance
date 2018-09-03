@@ -22,10 +22,9 @@ namespace UIPerformance.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var memoryStart = GC.GetTotalMemory(true);
             var timeStart = DateTime.UtcNow;
             var view = inflater.Inflate(_resource, container, false);
-            ElapsedMemory = memoryStart - GC.GetTotalMemory(true);
+            ElapsedMemory =  GC.GetTotalMemory(true) / 1024;
             ElapsedTime = (DateTime.UtcNow - timeStart).Milliseconds;
             ViewCreated?.Invoke(this);
             return view;
